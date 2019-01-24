@@ -32,6 +32,7 @@ public class ShoppingSteps {
 		driver = new FirefoxDriver();
 		driver.manage().window().maximize();
 		test = TestRunner.report.startTest("Test");
+		wait = new WebDriverWait(driver, 10);
 	}
 
 	@After
@@ -54,12 +55,21 @@ public class ShoppingSteps {
 	public void put_my_email(String email) throws InterruptedException {
 	    authenticationPage.inputEmail(email);
 	    authenticationPage.submitEmail(wait);
-	    Thread.sleep(5000);
 	}
 
-	@When("^then I input \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
-	public void then_I_input(String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, String arg7, String arg8, String arg9) {
-	    authenticationPage.inputFirstName(arg1);
+
+	@When("^then I input \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\"$")
+	public void then_I_input(String title, String firstName, String lastName, String birthday, String address, String city, String state, String zip, String number, String password) throws InterruptedException {
+	    authenticationPage.selectTitle(title);
+		authenticationPage.inputFirstName(firstName);
+	    authenticationPage.inputLastName(lastName);
+	    authenticationPage.inputPassword(password);
+	    authenticationPage.inputBirthday(birthday);
+	    authenticationPage.inputAddress(address);
+	    authenticationPage.inputCity(city);
+	    authenticationPage.inputState(state);
+	    authenticationPage.inputZip(zip);
+	    authenticationPage.inputPhone(number);
 	    
 	}
 

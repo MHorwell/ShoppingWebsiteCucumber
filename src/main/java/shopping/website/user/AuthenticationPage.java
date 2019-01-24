@@ -62,8 +62,10 @@ public class AuthenticationPage {
 	}
 	
 	public void submitEmail(WebDriverWait wait) {
-		submitEmail = wait.until(ExpectedConditions.elementToBeClickable(By.id("SubmitCreate")));
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("SubmitCreate")));
 		submitEmail.click();
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("uniform-id_gender1")));
+		
 	}
 	
 	public void selectTitle(String title) {
